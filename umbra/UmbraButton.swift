@@ -13,19 +13,21 @@ class UmbraButton: UIButton {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        commonInit()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        commonInit()
     }
     
-    @IBInspectable var hasShadows: Bool = false
+    @IBInspectable var hasShadows: Bool = false {
+        didSet {
+            adjustShadowIfNecessary()
+        }
+    }
     
     @IBInspectable var shadowColor: UIColor = UIColor.darkGray
     
-    @IBInspectable var shadowOffset: CGSize = CGSize(width: 0.0, height: -3.0)
+    @IBInspectable var shadowOffset: CGPoint = CGPoint(x: 1, y: 1)
     
     @IBInspectable var shadowOpacity: CGFloat = 0.5
     
@@ -33,19 +35,63 @@ class UmbraButton: UIButton {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
+        adjustShadowIfNecessary()
+    }
+    
+
+    
+    override func prepareForInterfaceBuilder() {
+        super.prepareForInterfaceBuilder()
+        adjustShadowIfNecessary()
+    }
+    
+    override func updateConfiguration() {
+        super.updateConfiguration()
+        adjustShadowIfNecessary()
+    }
+    
+    private func adjustShadowIfNecessary() {
         if hasShadows {
             if _shadowLayer != nil {
                 _shadowLayer?.removeFromSuperlayer()
                 _shadowLayer = nil
             }
             let shadowLayer = CAShapeLayer()
-            shadowLayer.path = UIBezierPath(roundedRect: bounds, cornerRadius: self.configuration?.background.cornerRadius ?? .zero).cgPath
+            
+            //corner radius more than this value doesn't make visual sense
+            let maxAllowedCornerRadius: CGFloat = frame.height/2.0
+            
+            if let validConfiguration = self.configuration {
+                //this button uses UIButton.Configuration?
+                switch validConfiguration.cornerStyle {
+                case .fixed:
+                    //when fixed is selected, the system uses the corner radius on the background configuration
+                    shadowLayer.path = UIBezierPath(roundedRect: bounds, cornerRadius: validConfiguration.background.cornerRadius).cgPath
+                case .dynamic:
+                    shadowLayer.path = UIBezierPath(roundedRect: bounds, cornerRadius: validConfiguration.background.cornerRadius).cgPath
+                case .small:
+                    //when small is selected, the system appears to be using approximately 12% of the height as the corner radius
+                    shadowLayer.path = UIBezierPath(roundedRect: bounds, cornerRadius: min((frame.height * 0.12), maxAllowedCornerRadius)).cgPath
+                case .medium:
+                    //when medium is selected, the system appears to be using approximately 18% of the height as the corner radius
+                    shadowLayer.path = UIBezierPath(roundedRect: bounds, cornerRadius: min((frame.height * 0.18), maxAllowedCornerRadius)).cgPath
+                case .large:
+                    //when large is selected, the system appears to be using approximately 24% of the height as the corner radius
+                    shadowLayer.path = UIBezierPath(roundedRect: bounds, cornerRadius: min((frame.height * 0.24), maxAllowedCornerRadius)).cgPath
+                case .capsule:
+                    //when capsule is selected, the system uses the height of the frame to determine what the corner radius should be
+                    shadowLayer.path = UIBezierPath(roundedRect: bounds, cornerRadius: maxAllowedCornerRadius).cgPath
+                @unknown default:
+                    shadowLayer.path = UIBezierPath(roundedRect: bounds, cornerRadius: .zero).cgPath
+                }
+            } else {
+                shadowLayer.path = UIBezierPath(roundedRect: bounds, cornerRadius: .zero).cgPath
+            }
             shadowLayer.shadowPath = shadowLayer.path
             shadowLayer.fillColor = backgroundColor?.cgColor
             shadowLayer.shadowColor = self.shadowColor.cgColor
-            shadowLayer.shadowOffset = self.shadowOffset
-            shadowLayer.shadowOpacity = Float(self.shadowOpacity)
+            shadowLayer.shadowOffset = CGSize(width: self.shadowOffset.x, height: self.shadowOffset.y)
+            shadowLayer.shadowOpacity = Float(shadowOpacity)
             shadowLayer.shadowRadius = self.shadowBlurRadius
             layer.insertSublayer(shadowLayer, at: 0)
             _shadowLayer = shadowLayer
@@ -53,21 +99,5 @@ class UmbraButton: UIButton {
             _shadowLayer?.removeFromSuperlayer()
             _shadowLayer = nil
         }
-    }
-    
-
-    
-    override func prepareForInterfaceBuilder() {
-        super.prepareForInterfaceBuilder()
-        commonInit()
-    }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        commonInit()
-    }
-    
-    private func commonInit() {
-        
     }
 }
