@@ -38,18 +38,22 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        testButton.shadowColor = .black
         shadowColorPicker.addTarget(self, action: #selector(colorChanged(_:)), for: .valueChanged)
         shadowColorPicker.selectedColor = .black
         
+        testButton.shadowOffset = CGPoint(x: 2, y: 2)
         xOffsetSlider.value = 2.0
         xOffsetValue.text = "2.0"
         
         yOffsetSlider.value = 2.0
         yOffsetValue.text = "2.0"
         
+        testButton.shadowOpacity = 0.5
         opacitySlider.value = 50.0
         opacityValue.text = "50%"
         
+        testButton.shadowBlurRadius = 2.0
         blurSlider.value = 2.0
         blurValue.text = "2.0"
         
