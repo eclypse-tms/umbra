@@ -10,3 +10,7 @@
 # umbra
 
 Umbra app demonstrates how to add shadow effect to rounded-corner buttons. Umbra uses CALayer in Core Animation to achieve this visual effect.
+
+<p align="center">
+  <img width="390" height="123.3333" src="./assets/test-button.png">
+</p>
