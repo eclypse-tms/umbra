@@ -40,14 +40,20 @@ class ViewController: UIViewController {
         
         shadowColorPicker.addTarget(self, action: #selector(colorChanged(_:)), for: .valueChanged)
         shadowColorPicker.selectedColor = .black
-        xOffsetSlider.value = 1.0
-        xOffsetValue.text = "1.0"
-        yOffsetSlider.value = 1.0
-        yOffsetValue.text = "1.0"
+        
+        xOffsetSlider.value = 2.0
+        xOffsetValue.text = "2.0"
+        
+        yOffsetSlider.value = 2.0
+        yOffsetValue.text = "2.0"
+        
         opacitySlider.value = 50.0
         opacityValue.text = "50%"
-        blurSlider.value = 1.0
-        blurValue.text = "1.0"
+        
+        blurSlider.value = 2.0
+        blurValue.text = "2.0"
+        
+        //testButton.layer.setAffineTransform(.init(scaleX: 2.0, y: 2.0))
     }
     
     @IBAction private func didChangeSwitch(_ sender: UISwitch) {
