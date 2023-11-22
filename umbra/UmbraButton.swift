@@ -38,8 +38,6 @@ class UmbraButton: UIButton {
         adjustShadowIfNecessary()
     }
     
-
-    
     override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
         adjustShadowIfNecessary()
