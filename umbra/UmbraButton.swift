@@ -21,7 +21,7 @@ class UmbraButton: UIButton {
     
     @IBInspectable var hasShadows: Bool = false {
         didSet {
-            adjustShadowIfNecessary()
+            setShadowLayer()
         }
     }
     
@@ -35,25 +35,19 @@ class UmbraButton: UIButton {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        adjustShadowIfNecessary()
+        setShadowLayer()
     }
     
     override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
-        adjustShadowIfNecessary()
+        setShadowLayer()
     }
     
-    override func updateConfiguration() {
-        super.updateConfiguration()
-        adjustShadowIfNecessary()
-    }
-    
-    private func adjustShadowIfNecessary() {
+    private func setShadowLayer() {
         if hasShadows {
-            if _shadowLayer != nil {
-                _shadowLayer?.removeFromSuperlayer()
-                _shadowLayer = nil
-            }
+            _shadowLayer?.removeFromSuperlayer()
+            _shadowLayer = nil
+            
             let shadowLayer = CAShapeLayer()
             
             //corner radius more than this value doesn't make visual sense
@@ -83,7 +77,8 @@ class UmbraButton: UIButton {
                     shadowLayer.path = UIBezierPath(roundedRect: bounds, cornerRadius: .zero).cgPath
                 }
             } else {
-                shadowLayer.path = UIBezierPath(roundedRect: bounds, cornerRadius: .zero).cgPath
+                //this button type does not use button configuration - check the main layer's corner radius
+                shadowLayer.path = UIBezierPath(roundedRect: bounds, cornerRadius: self.layer.cornerRadius).cgPath
             }
             shadowLayer.shadowPath = shadowLayer.path
             shadowLayer.fillColor = backgroundColor?.cgColor
