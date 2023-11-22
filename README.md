@@ -15,7 +15,7 @@ Umbra app demonstrates how to add shadow effect to buttons with rounded-corners 
   <img width="390" height="123.3333" src="./assets/test-button.png">
 </p>
 
-Download and run the example app to see how to control the shadow effect to your specifications. To achieve the same affect on your own UIButton's, check out the [UmbraButton.swift](./umbra/UmbraButton.swift) file. Use it as-is or subclass UIButton in your own project and copy and paste the relevant code.
+Download and run the example app to see how to control the shadow effect to your specifications. To achieve the same affect on your own UIButton's, check out the [UmbraButton.swift](./umbra/UmbraButton.swift) file. Use it as-is or subclass UIButton in your own project or copy the relevant code.
 
 ## Demo
 <p align="center">
