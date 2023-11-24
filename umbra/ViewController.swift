@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  umbra
 //
-//  Created by Turker Nessa Kucuk on 11/15/23.
+//  Created by eclypse on 11/15/23.
 //
 
 import UIKit
