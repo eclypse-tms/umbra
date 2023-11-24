@@ -19,7 +19,7 @@ class UmbraButton: UIButton {
         super.init(coder: coder)
     }
     
-    @IBInspectable var hasShadows: Bool = false {
+    @IBInspectable var hasShadow: Bool = false {
         didSet {
             setShadowLayer()
         }
@@ -44,7 +44,7 @@ class UmbraButton: UIButton {
     }
     
     private func setShadowLayer() {
-        if hasShadows {
+        if hasShadow {
             _shadowLayer?.removeFromSuperlayer()
             _shadowLayer = nil
             
