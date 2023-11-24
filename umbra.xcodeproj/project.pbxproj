@@ -14,6 +14,7 @@
 		B1FE3F1B2B05A1CD00308BF7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1FE3F1A2B05A1CD00308BF7 /* Assets.xcassets */; };
 		B1FE3F1E2B05A1CD00308BF7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1FE3F1C2B05A1CD00308BF7 /* LaunchScreen.storyboard */; };
 		B1FE3F262B05A22900308BF7 /* UmbraButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FE3F252B05A22900308BF7 /* UmbraButton.swift */; };
+		B2281ADD2B0FA941007272DB /* UmbraButtonOldApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2281ADC2B0FA941007272DB /* UmbraButtonOldApi.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		B1FE3F1D2B05A1CD00308BF7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B1FE3F1F2B05A1CD00308BF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B1FE3F252B05A22900308BF7 /* UmbraButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UmbraButton.swift; sourceTree = "<group>"; };
+		B2281ADC2B0FA941007272DB /* UmbraButtonOldApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UmbraButtonOldApi.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				B1FE3F252B05A22900308BF7 /* UmbraButton.swift */,
+				B2281ADC2B0FA941007272DB /* UmbraButtonOldApi.swift */,
 				B1FE3F112B05A1CB00308BF7 /* AppDelegate.swift */,
 				B1FE3F132B05A1CB00308BF7 /* SceneDelegate.swift */,
 				B1FE3F152B05A1CB00308BF7 /* ViewController.swift */,
@@ -144,6 +147,7 @@
 				B1FE3F162B05A1CB00308BF7 /* ViewController.swift in Sources */,
 				B1FE3F122B05A1CB00308BF7 /* AppDelegate.swift in Sources */,
 				B1FE3F142B05A1CB00308BF7 /* SceneDelegate.swift in Sources */,
+				B2281ADD2B0FA941007272DB /* UmbraButtonOldApi.swift in Sources */,
 				B1FE3F262B05A22900308BF7 /* UmbraButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
